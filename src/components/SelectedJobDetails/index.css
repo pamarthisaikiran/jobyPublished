@@ -1,0 +1,83 @@
+.img-title1 {
+  display: flex;
+  align-items: flex-start;
+}
+.list-job1 {
+  list-style-type: none;
+  background-color: #272727;
+  margin-bottom: 20px;
+  padding: 30px;
+  border-radius: 30px;
+  width: 900px;
+}
+.loc-emp-pack1 {
+  display: flex;
+  justify-content: space-between;
+}
+.logo-img1 {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+.tit-rating1 {
+  align-self: flex-start;
+}
+.title1 {
+  font-size: 20px;
+  font-family: 'Roboto';
+  color: #ffffff;
+}
+.rating1 {
+  font-size: 20px;
+  font-family: 'Roboto';
+  color: #ffffff;
+}
+.location1 {
+  font-size: 20px;
+  font-family: 'Roboto';
+  color: #ffffff;
+}
+.emp-type1 {
+  font-size: 20px;
+  font-family: 'Roboto';
+  color: #ffffff;
+}
+.pack1 {
+  font-size: 20px;
+  font-family: 'Roboto';
+  color: #ffffff;
+}
+.des1 {
+  font-size: 30px;
+  font-family: 'Roboto';
+  color: #ffffff;
+}
+.job-des1 {
+  font-size: 20px;
+  font-family: 'Roboto';
+  color: #ffffff;
+}
+.star1 {
+  color: #fbbf24;
+  margin-right: 10px;
+}
+.rat-star1 {
+  display: flex;
+  align-items: center;
+}
+.loc1 {
+  display: flex;
+  align-items: center;
+}
+.brief1 {
+  display: flex;
+  align-items: center;
+}
+.loc-icon1 {
+  color: #ffffff;
+  margin-right: 10px;
+}
+.brief-icon1 {
+  color: #ffffff;
+  margin-right: 10px;
+}
