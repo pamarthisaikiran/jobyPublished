@@ -1,0 +1,20 @@
+.lif-heading {
+  color: #ffffff;
+  font-size: 30px;
+  font-family: 'Roboto';
+}
+.lif-description {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 16px;
+}
+.lif-container {
+  display: flex;
+  align-self: flex-start;
+  justify-content: space-between;
+}
+.lif-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

@@ -5,9 +5,9 @@ const SkillsImg = props => {
   const {imageUrl, name} = eachImg
 
   return (
-    <li>
-      <img src={imageUrl} />
-      <p>{name}</p>
+    <li className="skills-li">
+      <img className="li-ski-img" src={imageUrl} />
+      <p className="li-ski-para">{name}</p>
     </li>
   )
 }

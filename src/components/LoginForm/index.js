@@ -32,6 +32,7 @@ class LoginForm extends Component {
   onSubmitFailure = errorMsg => {
     console.log(errorMsg)
     this.setState({errorShow: true, errorMsg})
+    this.setState({username: '', password: ''})
   }
 
   onSubmitForm = async event => {
@@ -111,6 +112,7 @@ class LoginForm extends Component {
           <div className="username">{this.renderUserName()}</div>
           <div className="password">{this.renderPassword()}</div>
           <button className="btn-login">Login</button>
+          {errorShow && <p className="error-message">*{errorMsg}</p>}
         </form>
       </div>
     )

@@ -20,7 +20,7 @@ const JobsCard = props => {
   } = jobDetails
 
   return (
-    <Link to={`/jobs/${id}`}>
+    <Link to={`/jobs/${id}`} className="link">
       <li className="list-job">
         <div className="img-title">
           <img className="logo-img" src={companyLogoUrl} />

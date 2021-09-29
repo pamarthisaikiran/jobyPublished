@@ -1,8 +1,20 @@
 .jobs-container {
   padding: 30px;
   display: flex;
-  justify-content: space-between;
-  width: 100vw;
+}
+@media (max-width: 576px) {
+  .jobs-container {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  .jobs-container {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+  }
 }
 .jobs {
   background-color: #000000;
@@ -42,12 +54,41 @@
   font-family: 'Roboto';
 }
 .pro-container {
-  width: 500px;
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  .pro-container {
+    width: 800px;
+  }
 }
 .profile {
   background-image: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
   background-size: cover;
   padding: 10px;
-
+  width: 200px;
+  height: 200px;
   border-radius: 20px;
+  align-self: center;
+}
+.filtered-items {
+  list-style-type: none;
+}
+.card {
+  display: flex;
+  flex-wrap: wrap;
+}
+.failure-text {
+  color: #ffffff;
+  font-size: 20px;
+  font-family: 'Roboto';
+}
+.failure-description {
+  color: #ffffff;
+  font-size: 16px;
+  font-family: 'Roboto';
+}
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

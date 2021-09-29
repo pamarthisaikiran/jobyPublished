@@ -52,7 +52,7 @@ const FilteredItems = props => {
     <div>
       <div>
         <h1 className="heading-type">Employment Type</h1>
-        <ul>{renderEmployTypeList()}</ul>
+        <ul className="ul-empy">{renderEmployTypeList()}</ul>
       </div>
       <div>
         <h1 className="heading-type">Salary Range</h1>

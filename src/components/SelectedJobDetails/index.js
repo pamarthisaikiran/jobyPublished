@@ -11,6 +11,12 @@ import Loader from 'react-loader-spinner'
 
 import SkillsImg from '../SkillImg'
 
+import Header from '../Header'
+
+import SimilarJobs from '../similarJobs'
+
+import LifeAtWork from '../lifeatCompany'
+
 import './index.css'
 
 class SelectedJobDetails extends Component {
@@ -71,7 +77,7 @@ class SelectedJobDetails extends Component {
         this.getSkillDataFormat(each),
       )
 
-      const des = [fetchedData.job_details.life_at_company].map(each =>
+      const companyDes = [fetchedData.job_details.life_at_company].map(each =>
         this.getDescription(each),
       )
 
@@ -83,13 +89,13 @@ class SelectedJobDetails extends Component {
         jobData: updatedData,
         similarJobsData: similarJobsUpdatedData,
         skillsData: skillss,
-        atWork: des,
+        atWork: companyDes,
       })
 
       console.log(updatedData)
       console.log(similarJobsUpdatedData)
       console.log(skillss)
-      console.log(des)
+      console.log(companyDes)
     }
   }
 
@@ -109,40 +115,61 @@ class SelectedJobDetails extends Component {
 
     const {imageUrl, name} = skillsData
 
+    const {imageUrl2, description} = atWork
+
     return (
-      <div>
-        <li className="list-job1">
-          <div className="img-title1">
-            <img className="logo-img1" src={companyLogoUrl} />
-            <div className="tit-rating1">
-              <h1 className="title1">{title}</h1>
-              <div className="rat-star1">
-                <BsFillStarFill className="star1" />
-                <p className="rating1">{rating}</p>
+      <div className="container-job">
+        <Header />
+        <div>
+          <div className="list-job1">
+            <div className="img-title1">
+              <img className="logo-img1" src={companyLogoUrl} />
+              <div className="tit-rating1">
+                <h1 className="title1">{title}</h1>
+                <div className="rat-star1">
+                  <BsFillStarFill className="star1" />
+                  <p className="rating1">{rating}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="loc-emp-pack1">
-            <div className="loc1">
-              <GoLocation className="loc-icon1" />
-              <p className="location1">{location}</p>
+            <div className="loc-emp-pack1">
+              <div className="loc1">
+                <GoLocation className="loc-icon1" />
+                <p className="location1">{location}</p>
+              </div>
+              <div className="brief1">
+                <BsFillBriefcaseFill className="brief-icon1" />
+                <p className="emp-type1">{employmentType}</p>
+              </div>
+              <p className="pack1">{packagePerAnnum}</p>
             </div>
-            <div className="brief1">
-              <BsFillBriefcaseFill className="brief-icon1" />
-              <p className="emp-type1">{employmentType}</p>
+            <hr />
+            <h1 className="des1">Description</h1>
+            <p className="job-des1">{jobDescription}</p>
+            <h1 className="skill-head">Skills</h1>
+            <ul className="skill-ul">
+              {skillsData.map(each => (
+                <SkillsImg eachImg={each} key={each.name} />
+              ))}
+            </ul>
+            <div>
+              <h1 className="lif-heading">Life at Company</h1>
+              <ul className="lif-ul">
+                {atWork.map(each => (
+                  <LifeAtWork details={each} key={each.description} />
+                ))}
+              </ul>
             </div>
-            <p className="pack1">{packagePerAnnum}</p>
           </div>
-          <hr />
-          <h1 className="des1">Description</h1>
-          <p className="job-des1">{jobDescription}</p>
-          <h1>Skills</h1>
-          <ul>
-            {skillsData.map(each => (
-              <SkillsImg eachImg={each} key={each.name} />
-            ))}
-          </ul>
-        </li>
+          <div>
+            <h1 className="simi-heading1">Similar Jobs</h1>
+            <ul className="simi-ul">
+              {similarJobsData.map(each => (
+                <SimilarJobs eachSimi={each} key={each.id} />
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     )
   }

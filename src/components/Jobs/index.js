@@ -3,6 +3,8 @@ import {BsSearch} from 'react-icons/bs'
 
 import Loader from 'react-loader-spinner'
 
+import Profile from '../profile'
+
 import Cookies from 'js-cookie'
 
 import JobsCard from '../jobsCard'
@@ -51,20 +53,70 @@ const salaryRangesList = [
   },
 ]
 
+const apiStatusConstants = {
+  initial: 'INITIAL',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+  inProgress: 'IN_PROGRESS',
+}
+
 class Jobs extends Component {
   state = {
+    apiStatus: apiStatusConstants.initial,
     jobsData: [],
     searchInput: '',
     employmentTypeId: '',
     activeSalaryRangeId: '',
     activeEmpTypeId: '',
+    profileData: [],
   }
 
   componentDidMount() {
     this.getJobsData()
+    this.getProfile()
+  }
+
+  getProfile = async () => {
+    this.setState({
+      apiStatus: apiStatusConstants.inProgress,
+    })
+    const jwtToken = Cookies.get('jwt_token')
+    const {profileData} = this.state
+
+    const api = 'https://apis.ccbp.in/profile'
+
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    }
+
+    const response = await fetch(api, options)
+    if (response.ok) {
+      const data = await response.json()
+      const Data = [data.profile_details].map(each => ({
+        name: each.name,
+        profileImageUrl: each.profile_image_url,
+        shortBio: each.short_bio,
+      }))
+
+      this.setState({
+        profileData: Data,
+      })
+      console.log(Data)
+    } else {
+      this.setState({
+        apiStatus: apiStatusConstants.failure,
+      })
+    }
   }
 
   getJobsData = async () => {
+    this.setState({
+      apiStatus: apiStatusConstants.inProgress,
+    })
+
     const jwtToken = Cookies.get('jwt_token')
     const {
       jobsData,
@@ -102,10 +154,36 @@ class Jobs extends Component {
       }))
       this.setState({
         jobsData: updatedData,
+        apiStatus: apiStatusConstants.success,
       })
       console.log(updatedData)
+    } else {
+      this.setState({
+        apiStatus: apiStatusConstants.failure,
+      })
     }
   }
+
+  renderFailureView = () => (
+    <div className="products-error-view-container">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+        alt="failure view"
+        className="failure"
+      />
+      <h1 className="failure-text">Oops!SomeThing Went Wrong</h1>
+      <p className="failure-description">
+        We can not seem to find the page you looking for
+      </p>
+      <button className="nav-button">Retry</button>
+    </div>
+  )
+
+  renderLoadingView = () => (
+    <div className="loader-container" testid="loader">
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </div>
+  )
 
   onChangeSearch = event => {
     this.setState({searchInput: event.target.value}, this.getJobsData)
@@ -119,6 +197,7 @@ class Jobs extends Component {
   onChangeEmpId = event => {
     const {activeEmpTypeId} = this.state
     this.setState({activeEmpTypeId: event.target.value}, this.getJobsData)
+    console.log(activeEmpTypeId)
   }
 
   onSearch = () => {
@@ -128,28 +207,29 @@ class Jobs extends Component {
   renderJobsList = () => {
     const {jobsData} = this.state
     const {searchInput} = this.state
+    const lengthOfJobList = jobsData.length > 0
 
-    return (
+    return lengthOfJobList ? (
       <div>
-        <div className="input-search">
-          <input
-            value={searchInput}
-            onChange={this.onChangeSearch}
-            type="search"
-            className="search-input"
-            placeholder="search"
-          />
-          <div className="search-icon-container">
-            <BsSearch onClick={this.onSearch} className="search-icon" />
-          </div>
-        </div>
         <div>
-          <ul>
+          <ul className="card">
             {jobsData.map(each => (
               <JobsCard jobDetails={each} key={each.id} />
             ))}
           </ul>
         </div>
+      </div>
+    ) : (
+      <div className="products-error-view-container">
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+          alt="failure view"
+          className="failure"
+        />
+        <h1 className="failure-text">No Jobs Found</h1>
+        <p className="failure-description">
+          We could not find any other jobs.Try other filters
+        </p>
       </div>
     )
   }
@@ -158,31 +238,62 @@ class Jobs extends Component {
     this.getJobsData()
   }
 
+  renderAllJobs = () => {
+    const {apiStatus} = this.state
+
+    switch (apiStatus) {
+      case apiStatusConstants.success:
+        return this.renderJobsList()
+      case apiStatusConstants.failure:
+        return this.renderFailureView()
+      case apiStatusConstants.inProgress:
+        return this.renderLoadingView()
+      default:
+        return null
+    }
+  }
+
   render() {
+    const {searchInput, profileData} = this.state
+    const {profileImageUrl, name, shortBio} = profileData
     return (
-      <div className="jobs">
+      <>
         <Header />
-        <div className="jobs-container">
-          <div className="pro-container">
-            <div className="profile">
-              <h1 className="pro-heading">RAHUL ATTLURI</h1>
-              <p className="pro-para">
-                {' '}
-                Lead Software Developer and AI-ML expert
-              </p>
+        <div className="jobs">
+          <div className="jobs-container">
+            <div className="pro-container">
+              <ul>
+                {profileData.map(each => (
+                  <Profile eachDet={each} key={each.name} />
+                ))}
+              </ul>
+              <ul className="filtered-items">
+                <FilteredItems
+                  employmentTypesList={employmentTypesList}
+                  salaryRangesList={salaryRangesList}
+                  onChangeSalary={this.onChangeSalary}
+                  onChangeEmpId={this.onChangeEmpId}
+                />
+              </ul>
             </div>
-            <ul>
-              <FilteredItems
-                employmentTypesList={employmentTypesList}
-                salaryRangesList={salaryRangesList}
-                onChangeSalary={this.onChangeSalary}
-                onChangeEmpId={this.onChangeEmpId}
-              />
-            </ul>
+            <div>
+              <div className="input-search">
+                <input
+                  value={searchInput}
+                  onChange={this.onChangeSearch}
+                  type="search"
+                  className="search-input"
+                  placeholder="search"
+                />
+                <div className="search-icon-container">
+                  <BsSearch onClick={this.onSearch} className="search-icon" />
+                </div>
+              </div>
+              {this.renderAllJobs()}
+            </div>
           </div>
-          <div>{this.renderJobsList()}</div>
         </div>
-      </div>
+      </>
     )
   }
 }

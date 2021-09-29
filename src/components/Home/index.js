@@ -22,7 +22,9 @@ const Home = () => {
             Millions of people are searching for jobs,salary information and
             company reviews.Find the job that fits your ability and potential
           </p>
-          <button className="home-button">Find Jobs</button>
+          <Link to="/jobs" className="link">
+            <button className="home-button">Find Jobs</button>
+          </Link>
         </div>
       </div>
     </>

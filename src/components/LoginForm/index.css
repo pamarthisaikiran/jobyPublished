@@ -9,11 +9,32 @@
 }
 .form {
   background-color: #272727;
-  width: 400px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   padding: 30px;
   border-radius: 10px;
+}
+
+@media (max-width: 576px) {
+  .form {
+    background-color: #272727;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 10px;
+  }
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  .form {
+    background-color: #272727;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 10px;
+  }
 }
 .password {
   display: flex;
@@ -35,10 +56,40 @@
   font-size: 24px;
   color: #ffffff;
 }
+@media (max-width: 576px) {
+  .heading-user {
+    font-family: 'Roboto';
+    font-size: 18px;
+    color: #ffffff;
+  }
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  .heading-user {
+    font-family: 'Roboto';
+    font-size: 21px;
+    color: #ffffff;
+  }
+}
+@media (max-width: 576px) {
+}
 .heading-pass {
   font-family: 'Roboto';
   font-size: 24px;
   color: #ffffff;
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  .heading-pass {
+    font-family: 'Roboto';
+    font-size: 21px;
+    color: #ffffff;
+  }
+}
+@media (max-width: 576px) {
+  .heading-pass {
+    font-family: 'Roboto';
+    font-size: 18px;
+    color: #ffffff;
+  }
 }
 .user-input {
   background-color: transparent;
@@ -58,4 +109,7 @@
   color: #ffffff;
   border-radius: 3px;
   padding: 5px;
+}
+.error-message {
+  color: #ff0b37;
 }

@@ -1,0 +1,68 @@
+.simi-heading {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 16px;
+}
+.simi-star {
+  color: #fbbf24;
+  margin-right: 10px;
+}
+.simi-rating {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 12px;
+}
+.simi-list {
+  background-color: #272727;
+  margin-bottom: 20px;
+  padding: 30px;
+  border-radius: 30px;
+  width: 350px;
+  margin-right: 30px;
+}
+.simi-description {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 12px;
+}
+.all {
+  display: flex;
+}
+.simi-nav-loc {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+.simi-nav {
+  color: #ffffff;
+  margin-right: 10px;
+}
+.simi-location {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 12px;
+}
+.simi-box-emp {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+.simi-emp {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 12px;
+}
+.simi-box {
+  color: #ffffff;
+  margin-right: 10px;
+}
+.simi-card {
+  display: flex;
+}
+.simi-star-rat {
+  display: flex;
+  align-items: center;
+}
+.head-rat-star {
+  margin-left: 10px;
+}

@@ -8,7 +8,7 @@
   margin-bottom: 20px;
   padding: 30px;
   border-radius: 30px;
-  width: 900px;
+  margin: 30px;
 }
 .loc-emp-pack1 {
   display: flex;
@@ -80,4 +80,37 @@
 .brief-icon1 {
   color: #ffffff;
   margin-right: 10px;
+}
+.skill-ul {
+  display: flex;
+  list-style-type: none;
+  flex-wrap: wrap;
+}
+.container-job {
+  background-color: #000000;
+
+  background-size: cover;
+}
+.simi-heading1 {
+  font-size: 30px;
+  font-family: 'Roboto';
+  color: #ffffff;
+}
+.simi-ul {
+  list-style-type: none;
+  display: flex;
+}
+.skill-head {
+  color: #ffffff;
+  font-size: 30px;
+  font-family: 'Roboto';
+}
+.lif-ul {
+  align-self: flex-start;
+  list-style-type: none;
+}
+.lif-heading {
+  color: #ffffff;
+  font-size: 30px;
+  font-family: 'Roboto';
 }
