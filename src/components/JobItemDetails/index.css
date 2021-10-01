@@ -99,6 +99,7 @@
 .simi-ul {
   list-style-type: none;
   display: flex;
+  flex-wrap: wrap;
 }
 .skill-head {
   color: #ffffff;
@@ -113,4 +114,21 @@
   color: #ffffff;
   font-size: 30px;
   font-family: 'Roboto';
+}
+.des-url {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.anchor {
+  color: #4f46e5;
+  text-decoration: none;
+  font-family: 'Roboto';
+}
+.ar-box {
+  color: #4f46e5;
+}
+.visi-box {
+  display: flex;
+  align-items: center;
 }

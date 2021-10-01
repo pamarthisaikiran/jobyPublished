@@ -17,7 +17,7 @@ const Home = () => {
       <Header />
       <div className="home-bg">
         <div className="card-home">
-          <h1 className="home-heading">Find Job That Fits Your Life</h1>
+          <h1 className="home-heading">Find The Job That Fits Your Life</h1>
           <p className="home-para">
             Millions of people are searching for jobs,salary information and
             company reviews.Find the job that fits your ability and potential

@@ -4,13 +4,14 @@
 
   background-size: cover;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 30px;
 }
 .ul-header {
   list-style-type: none;
   display: flex;
+  align-items: center;
 }
 .nav-heading {
   color: #ffffff;

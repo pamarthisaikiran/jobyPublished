@@ -14,7 +14,7 @@ const Header = props => {
   return (
     <nav className="nav-bg">
       <div>
-        <Link to="/jobs" className="link">
+        <Link to="/" className="link">
           <img
             className="nav-img"
             alt="website logo"
@@ -33,12 +33,19 @@ const Header = props => {
             <h1 className="nav-heading">Jobs</h1>
           </Link>
         </li>
+
+        <li>
+          <div>
+            <button
+              type="button"
+              onClick={onClickLogOut}
+              className="nav-button"
+            >
+              Logout
+            </button>
+          </div>
+        </li>
       </ul>
-      <div>
-        <button type="button" onClick={onClickLogOut} className="nav-button">
-          Logout
-        </button>
-      </div>
     </nav>
   )
 }

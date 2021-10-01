@@ -11,7 +11,7 @@ const LifeAtWork = props => {
           <p className="lif-description">{description}</p>
         </div>
         <div>
-          <img className="lif-img" src={imageUrl2} />
+          <img alt="life at company" className="lif-img" src={imageUrl2} />
         </div>
       </div>
     </li>

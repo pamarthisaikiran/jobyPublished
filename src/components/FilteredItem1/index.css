@@ -1,0 +1,30 @@
+.label {
+  color: #ffffff;
+}
+.list-fil {
+  list-style-type: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 250px;
+}
+.heading-type {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 20px;
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  .ul-empy {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .list-fil {
+    list-style-type: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+}
+.check {
+  width: 50px;
+}
