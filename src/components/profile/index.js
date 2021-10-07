@@ -5,7 +5,7 @@ const Profile = props => {
   const {profileImageUrl, name, shortBio} = eachDet
   return (
     <li className="profile">
-      <img src={profileImageUrl} />
+      <img alt="profile" src={profileImageUrl} />
       <h1 className="pro-heading">{name}</h1>
       <p className="pro-para"> {shortBio}</p>
     </li>

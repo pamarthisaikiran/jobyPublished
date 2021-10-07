@@ -1,5 +1,7 @@
 import {Component} from 'react'
 
+import {v4 as uuidv4} from 'uuid'
+
 import {BsSearch} from 'react-icons/bs'
 
 import {Link} from 'react-router-dom'
@@ -25,22 +27,22 @@ const employmentTypesList = [
   {
     label: 'Full Time',
     employmentTypeId: 'FULLTIME',
-    uniqueKey: 1,
+    id: uuidv4(),
   },
   {
     label: 'Part Time',
     employmentTypeId: 'PARTTIME',
-    uniqueKey: 2,
+    id: uuidv4(),
   },
   {
     label: 'Freelance',
     employmentTypeId: 'FREELANCE',
-    uniqueKey: 3,
+    id: uuidv4(),
   },
   {
     label: 'Internship',
     employmentTypeId: 'INTERNSHIP',
-    uniqueKey: 4,
+    id: uuidv4(),
   },
 ]
 
@@ -48,22 +50,22 @@ const salaryRangesList = [
   {
     salaryRangeId: '1000000',
     label: '10 LPA and above',
-    uniqueKey: 1,
+    id: uuidv4(),
   },
   {
     salaryRangeId: '2000000',
     label: '20 LPA and above',
-    uniqueKey: 2,
+    id: uuidv4(),
   },
   {
     salaryRangeId: '3000000',
     label: '30 LPA and above',
-    uniqueKey: 3,
+    id: uuidv4(),
   },
   {
     salaryRangeId: '4000000',
     label: '40 LPA and above',
-    uniqueKey: 4,
+    id: uuidv4(),
   },
 ]
 
@@ -75,15 +77,18 @@ const apiStatusConstants = {
 }
 
 class Jobs extends Component {
-  state = {
-    apiStatus: apiStatusConstants.initial,
-    jobsData: [],
-    search: '',
-    employmentTypeId: '',
-    activeSalaryRangeId: '',
-    activeEmpTypeId: '',
-    profileData: [],
-    link: [],
+  constructor() {
+    super()
+    this.state = {
+      apiStatus: apiStatusConstants.initial,
+      jobsData: [],
+      search: '',
+      employmentTypeId: '',
+      activeSalaryRangeId: '',
+      activeEmpTypeId: '',
+      profileData: [],
+      option: [],
+    }
   }
 
   componentDidMount() {
@@ -98,7 +103,7 @@ class Jobs extends Component {
     const jwtToken = Cookies.get('jwt_token')
     const {profileData} = this.state
 
-    const api = 'https://apis.ccbp.in/profile'
+    const profileApiUrl = 'https://apis.ccbp.in/profile'
 
     const options = {
       method: 'GET',
@@ -107,7 +112,7 @@ class Jobs extends Component {
       },
     }
 
-    const response = await fetch(api, options)
+    const response = await fetch(profileApiUrl, options)
     if (response.ok) {
       const data = await response.json()
       const Data = [data.profile_details].map(each => ({
@@ -140,11 +145,14 @@ class Jobs extends Component {
       employmentTypeId,
       activeSalaryRangeId,
       activeEmpTypeId,
+      option,
     } = this.state
 
     /* employment_type=${activeEmpTypeId}&minimum_package=${activeSalaryRangeId}& */
 
-    const url = `https://apis.ccbp.in/jobs?employment_type=${activeEmpTypeId}&minimum_package=${activeSalaryRangeId}&search=${search}`
+    const jobsApiUrl = `https://apis.ccbp.in/jobs?employment_type=${option.join(
+      ',',
+    )}&minimum_package=${activeSalaryRangeId}&search=${search}`
 
     const options = {
       method: 'GET',
@@ -153,7 +161,7 @@ class Jobs extends Component {
       },
     }
 
-    const response = await fetch(url, options)
+    const response = await fetch(jobsApiUrl, options)
     if (response.ok) {
       const fetchedData = await response.json()
       const updatedData = fetchedData.jobs.map(each => ({
@@ -212,7 +220,7 @@ class Jobs extends Component {
   )
 
   onChangeSearch = event => {
-    this.setState({searchInput: event.target.value})
+    this.setState({search: event.target.value})
   }
 
   onChangeSalary = event => {
@@ -221,8 +229,32 @@ class Jobs extends Component {
   }
 
   onChangeEmpId = event => {
-    const {activeEmpTypeId} = this.state
-    this.setState({activeEmpTypeId: event.target.value}, this.getJobsData)
+    // const {activeEmpTypeId} = this.state
+    // this.setState({activeEmpTypeId: event.target.value}, this.getJobsData)
+    const {option} = this.state
+    console.log(event.target.checked)
+    let array = []
+    console.log(array)
+
+    if (event.target.checked === true) {
+      array = [event.target.value]
+      this.setState(
+        prev => ({
+          option: [...prev.option, ...array],
+        }),
+        this.getJobsData,
+      )
+    }
+    if (event.target.checked === false) {
+      const newArray = option.filter(each => each !== event.target.value)
+      this.setState(
+        {
+          option: [...newArray],
+        },
+        this.getJobsData,
+      )
+      console.log(option)
+    }
   }
 
   onSearch = () => {
@@ -330,7 +362,7 @@ class Jobs extends Component {
                   <FilteredItems2
                     onChangeEmpId={this.onChangeEmpId}
                     eachDetailss={each}
-                    key={each.uniqueKey}
+                    key={each.id}
                   />
                 ))}
               </ul>
@@ -340,7 +372,7 @@ class Jobs extends Component {
                   <FilteredItems1
                     eachSalary={each}
                     onChangeSalary={this.onChangeSalary}
-                    key={each.uniqueKey}
+                    key={each.id}
                   />
                 ))}
               </ul>

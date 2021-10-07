@@ -96,12 +96,14 @@
   outline: none;
   border: 1px solid #64748b;
   border-radius: 3px;
+  color: #ffffff;
 }
 .pass-input {
   background-color: transparent;
   outline: none;
   border: 1px solid #64748b;
   border-radius: 3px;
+  color: #ffffff;
 }
 .btn-login {
   background-color: #6366f1;
