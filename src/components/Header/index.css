@@ -1,12 +1,24 @@
 .nav-bg {
   background-color: #202020;
-  height: 15vh;
 
   background-size: cover;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 30px;
+  width: 100vw;
+}
+@media (max-width: 576px) {
+  .nav-bg {
+    background-color: #202020;
+
+    background-size: cover;
+
+    padding-top: 30px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+  }
 }
 .ul-header {
   list-style-type: none;
@@ -30,4 +42,25 @@
 }
 .nav-img {
   width: ;
+}
+@media (max-width: 576px) {
+  .nav-heading {
+    color: #ffffff;
+    font-size: 18px;
+    font-family: 'Roboto';
+    margin-right: 10px;
+  }
+  .nav-button {
+    background-color: #6366f1;
+    color: #ffffff;
+    border-width: 0px;
+    border-radius: 3px;
+    font-family: 'Roboto';
+    width: 60px;
+    height: 30px;
+    font-size: 16px;
+  }
+  .nav-img {
+    margin-top: 50px;
+  }
 }
